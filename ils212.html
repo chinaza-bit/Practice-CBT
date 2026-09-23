@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <title>ILS 212 Practice CBT — SamistInTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="loadingScreen" class="loading-screen" aria-live="polite" aria-label="Loading CBT practice exam">
+    <div class="loading-card">
+      <div class="loading-logo">S</div>
+      <div class="loading-spinner" aria-hidden="true"></div>
+      <div class="loading-eyebrow">SAMISTINTECH • ILS 212 Practice CBT</div>
+      <div id="loadingMessage" class="loading-message"></div>
+      <div class="typing-line"><span></span><span></span><span></span></div>
+      <div class="loading-progress"><span id="loadingProgress"></span></div>
+      <div id="loadingCountdown" class="loading-countdown">Preparing your practice exam… 6s</div>
+    </div>
+  </div>
+
+  <div class="app-shell">
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">S</div>
+          <div><strong>SamistInTech</strong><span>ILS 212 Practice CBT</span></div>
+        </a>
+        <input type="checkbox" id="navToggle" class="nav-toggle-input">
+        <label for="navToggle" class="nav-toggle-btn" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="ils212.html" class="active">ILS 212</a>
+          <a href="gst212.html">GST 212</a>
+          <a href="get204.html">GET 204</a>
+          <a href="ift212.html">IFT 212</a>
+        </div>
+        <div class="nav-actions">
+          <button class="icon-btn" id="themeBtn" title="Toggle theme">◐</button>
+          <button class="icon-btn" id="resetBtn" title="Reset test">↻</button>
+        </div>
+      </div>
+    </nav>
+
+
+    <main>
+      <section id="startScreen" class="screen active">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <span class="eyebrow">FUTO • Practice CBT</span>
+            <h1>Prepare smarter.<br><em>Test yourself.</em></h1>
+            <p>A clean, student-friendly CBT practice environment designed for ILS 212 study, revision and practice.</p>
+          </div>
+          <div class="hero-art"><div class="orb orb1"></div><div class="orb orb2"></div><div class="grid-icon">✓</div></div>
+        </div>
+        <div class="setup-grid">
+          <div class="panel setup-panel">
+            <div class="panel-title"><span>⚙</span><div><h2>Test setup</h2><p>Choose how you want to practise.</p></div></div>
+            <label>Student name<input id="studentName" type="text" placeholder="Enter your name"></label>
+            <div class="two-col">
+              <label>Batch<select id="batchSelect"><option value="1">Batch 1 • Questions 1–70</option><option value="2">Batch 2 • Questions 71–140</option><option value="3">Batch 3 • Questions 141–210</option><option value="4">Batch 4 • Questions 211–280</option><option value="5">Batch 5 • Questions 281–350</option></select></label>
+              <label>Questions<select id="countSelect"><option value="10">10 questions</option><option value="20">20 questions</option><option value="30">30 questions</option><option value="50">50 questions</option><option value="70" selected>70 questions</option></select></label>
+            </div>
+            <div class="test-info"><div><b>⏱</b><span>Timer<br><strong id="timePreview">70 min</strong></span></div><div><b>✓</b><span>Scoring<br><strong>1 mark each</strong></span></div><div><b>⚑</b><span>Review<br><strong>Flag questions</strong></span></div></div>
+            <button id="startBtn" class="primary-btn full">Start Practice <span>→</span></button>
+          </div>
+          <div class="panel guide-panel"><h3>How it works</h3><ol><li>Select a batch and number of questions.</li><li>Choose one option for each question.</li><li>Use the navigator to jump between questions.</li><li>Flag questions you want to revisit.</li><li>Submit to see your score and detailed review.</li></ol><div class="note">💡 <b>Tip:</b> The question bank contains 350 practice questions covering the major ILS 212 topics.</div></div>
+        </div>
+      </section>
+
+      <section id="examScreen" class="screen">
+        <div class="exam-head panel"><div><span class="eyebrow">ILS 212 • PRACTICE CBT</span><h2 id="examTitle">Batch 1</h2></div><div class="exam-meta"><div><small>Candidate</small><strong id="candidateName">Student</strong></div><div class="timer"><small>Time left</small><strong id="timer">70:00</strong></div></div></div>
+        <div class="progress-wrap"><div class="progress-label"><span id="progressText">Question 1 of 70</span><span id="answeredText">0 answered</span></div><div class="progress"><span id="progressBar"></span></div></div>
+        <div class="exam-layout">
+          <article class="question-card panel"><div class="q-top"><span class="q-number" id="qNumber">Question 1</span><button id="flagBtn" class="flag-btn">⚑ Flag</button></div><h1 id="questionText"></h1><div id="options" class="options"></div><div class="nav-row"><button id="prevBtn" class="secondary-btn">← Previous</button><button id="nextBtn" class="primary-btn">Next →</button></div></article>
+          <aside class="navigator panel"><div class="nav-title"><h3>Question navigator</h3><span id="navCount">0/70</span></div><div id="questionGrid" class="question-grid"></div><div class="legend"><span><i class="dot answered"></i> Answered</span><span><i class="dot flagged"></i> Flagged</span><span><i class="dot"></i> Unanswered</span></div><button id="submitBtn" class="submit-btn full">Submit test</button></aside>
+        </div>
+      </section>
+
+      <section id="resultScreen" class="screen">
+        <div class="result-hero panel"><div class="result-badge">✓</div><div><span class="eyebrow">TEST COMPLETED</span><h1 id="resultTitle">Well done!</h1><p id="resultSubtitle"></p></div><div class="score-ring"><strong id="scorePercent">0%</strong><span>Score</span></div></div>
+        <div class="stats-grid"><div class="stat panel"><span>Correct</span><strong id="correctStat">0</strong></div><div class="stat panel"><span>Wrong</span><strong id="wrongStat">0</strong></div><div class="stat panel"><span>Unanswered</span><strong id="unansweredStat">0</strong></div><div class="stat panel"><span>Time used</span><strong id="timeUsedStat">0m</strong></div></div>
+        <div class="result-layout"><div class="panel review-panel"><div class="panel-heading"><div><h2>Answer review</h2><p>See what you got right and where to improve.</p></div><select id="reviewFilter"><option value="all">All questions</option><option value="wrong">Wrong only</option><option value="unanswered">Unanswered only</option></select></div><div id="reviewList"></div></div><div class="panel result-side"><h3>Performance</h3><div class="big-score"><span id="scoreFraction">0 / 0</span><small>marks</small></div><div class="performance-bar"><span id="scoreBar"></span></div><p id="performanceMessage"></p><button id="newTestBtn" class="primary-btn full">Take another test</button></div></div>
+      </section>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-mark">S</div>
+          <div>
+            <strong>SamistInTech</strong>
+            <p>A student practice CBT portal built for study, revision and self-assessment ahead of the real exam.</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Courses</h4>
+          <a href="ils212.html">ILS 212 — Information Literacy Skills</a>
+          <a href="gst212.html">GST 212 — Philosophy</a>
+          <a href="get204.html">GET 204 — Engineering Workshop Practice</a>
+          <a href="ift212.html">IFT 212 — Computer Architecture</a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <span>Built by SamistInTech</span>
+          <span>Nigeria • Tech Enthusiast</span>
+          <span>Not an official examination</span>
+        </div>
+        <div class="footer-bottom">© 2026 SamistInTech. Practice CBT — built for student learning &amp; practice.</div>
+      </div>
+    </footer>
+  </div>
+  <script src="questions.js"></script><script src="script.js"></script>
+</body>
+</html>

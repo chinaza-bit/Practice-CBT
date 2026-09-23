@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <title>IFT 212 — SamistInTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">S</div>
+          <div><strong>SamistInTech</strong><span>IFT 212</span></div>
+        </a>
+        <input type="checkbox" id="navToggle" class="nav-toggle-input">
+        <label for="navToggle" class="nav-toggle-btn" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="ils212.html">ILS 212</a>
+          <a href="gst212.html">GST 212</a>
+          <a href="get204.html">GET 204</a>
+          <a href="ift212.html" class="active">IFT 212</a>
+        </div>
+        <div class="nav-actions">
+          <button class="icon-btn" id="themeBtn" title="Toggle theme">◐</button>
+        </div>
+      </div>
+    </nav>
+    <main class="course-page">
+      <div class="course-wrap">
+        <div class="course-hero">
+          <span class="eyebrow">IFT 212 • COMPUTER ARCHITECTURE &amp; ORGANIZATION</span>
+          <h1>What do you want to <em>do</em>?</h1>
+          <p>Study the condensed key-points note first, or jump straight into the 217-question practice CBT covering all 6 CCMAS topics.</p>
+        </div>
+        <div class="choice-grid">
+          <a class="course-card" href="ift212_notes.html">
+            <div class="course-icon">📘</div>
+            <h2>Summary &amp; Key Points</h2>
+            <p>A clean revision note with definitions, comparison tables (Von Neumann vs Harvard, x86 vs MIPS, hardwired vs microprogrammed control) and exam-style Q&amp;A.</p>
+            <div class="course-meta"><span>6 topics</span><span>Open →</span></div>
+          </a>
+          <a class="course-card" href="ift212_exam.html">
+            <div class="course-icon">📝</div>
+            <h2>Practice CBT</h2>
+            <p>217 practice questions across 6 topic batches — hardware &amp; ISA, dataflow, CPU design, assembly programming, memory hierarchy, and I/O organization.</p>
+            <div class="course-meta"><span>217 questions • 6 batches</span><span>Open →</span></div>
+          </a>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-mark">S</div>
+          <div>
+            <strong>SamistInTech</strong>
+            <p>A student practice CBT portal built for study, revision and self-assessment ahead of the real exam.</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Courses</h4>
+          <a href="ils212.html">ILS 212 — Information Literacy Skills</a>
+          <a href="gst212.html">GST 212 — Philosophy</a>
+          <a href="get204.html">GET 204 — Engineering Workshop Practice</a>
+          <a href="ift212.html">IFT 212 — Computer Architecture</a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <span>Built by SamistInTech</span>
+          <span>Nigeria • Tech Enthusiast</span>
+          <span>Not an official examination</span>
+        </div>
+        <div class="footer-bottom">© 2026 SamistInTech. Practice CBT — built for student learning &amp; practice.</div>
+      </div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('themeBtn').addEventListener('click',()=>document.body.classList.toggle('dark'));
+  </script>
+</body>
+</html>

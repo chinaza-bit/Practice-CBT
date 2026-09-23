@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <title>Practice CBT Courses — SamistInTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">S</div>
+          <div><strong>SamistInTech</strong><span>Practice CBT Portal</span></div>
+        </a>
+        <input type="checkbox" id="navToggle" class="nav-toggle-input">
+        <label for="navToggle" class="nav-toggle-btn" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-links">
+          <a href="index.html" class="active">Home</a>
+          <a href="ils212.html">ILS 212</a>
+          <a href="gst212.html">GST 212</a>
+          <a href="get204.html">GET 204</a>
+          <a href="ift212.html">IFT 212</a>
+        </div>
+        <div class="nav-actions">
+          <button class="icon-btn" id="themeBtn" title="Toggle theme">◐</button>
+        </div>
+      </div>
+    </nav>
+    <main class="course-page">
+      <div class="course-wrap">
+        <div class="course-hero">
+          <span class="eyebrow">STUDENT PRACTICE PORTAL</span>
+          <h1>Choose your <em>course</em></h1>
+          <p>Select a course below to open its dedicated practice CBT page. These are for study, revision and self-assessment.</p>
+        </div>
+        <div class="course-grid">
+          <a class="course-card" href="ils212.html">
+            <div class="course-icon">IL</div>
+            <h2>ILS 212</h2>
+            <p>Information Literacy Skills practice CBT with 350 questions across 5 batches.</p>
+            <div class="course-meta"><span>350 questions</span><span>Open →</span></div>
+          </a>
+          <a class="course-card" href="gst212.html">
+            <div class="course-icon">GST</div>
+            <h2>GST 212</h2>
+            <p>Philosophy practice CBT with 10 chapter batches and 35 questions in each batch.</p>
+            <div class="course-meta"><span>350 questions • 10 batches</span><span>Open →</span></div>
+          </a>
+          <a class="course-card" href="get204.html">
+            <div class="course-icon">GET</div>
+            <h2>GET 204</h2>
+            <p>Engineering Workshop Practice CBT covering safety, measuring instruments, machine shop, welding, foundry, casting and more.</p>
+            <div class="course-meta"><span>350 questions • 5 batches</span><span>Open →</span></div>
+          </a>
+          <a class="course-card" href="ift212.html">
+            <div class="course-icon">IFT</div>
+            <h2>IFT 212</h2>
+            <p>Computer Architecture &amp; Organization — choose a key-points summary note or a 217-question practice CBT across 6 topics.</p>
+            <div class="course-meta"><span>Notes + 217 questions</span><span>Open →</span></div>
+          </a>
+        </div>
+      </div>
+    </main>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-mark">S</div>
+          <div>
+            <strong>SamistInTech</strong>
+            <p>A student practice CBT portal built for study, revision and self-assessment ahead of the real exam.</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Courses</h4>
+          <a href="ils212.html">ILS 212 — Information Literacy Skills</a>
+          <a href="gst212.html">GST 212 — Philosophy</a>
+          <a href="get204.html">GET 204 — Engineering Workshop Practice</a>
+          <a href="ift212.html">IFT 212 — Computer Architecture</a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <span>Built by SamistInTech</span>
+          <span>Nigeria • Tech Enthusiast</span>
+          <span>Not an official examination</span>
+        </div>
+        <div class="footer-bottom">© 2026 SamistInTech. Practice CBT — built for student learning &amp; practice.</div>
+      </div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('themeBtn').addEventListener('click',()=>document.body.classList.toggle('dark'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f766e">
+  <title>IFT 212 — Summary &amp; Key Points | SamistInTech</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <nav class="navbar">
+      <div class="nav-inner">
+        <a class="brand" href="index.html">
+          <div class="brand-mark">S</div>
+          <div><strong>SamistInTech</strong><span>IFT 212 Notes</span></div>
+        </a>
+        <input type="checkbox" id="navToggle" class="nav-toggle-input">
+        <label for="navToggle" class="nav-toggle-btn" aria-label="Toggle menu"><span></span></label>
+        <div class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="ils212.html">ILS 212</a>
+          <a href="gst212.html">GST 212</a>
+          <a href="get204.html">GET 204</a>
+          <a href="ift212.html" class="active">IFT 212</a>
+        </div>
+        <div class="nav-actions">
+          <button class="icon-btn" id="themeBtn" title="Toggle theme">◐</button>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <div class="screen active" style="margin-top:26px">
+        <div class="hero-card notes-hero">
+          <div class="hero-copy">
+            <span class="eyebrow">IFT 212 • SUMMARY &amp; KEY POINTS</span>
+            <h1>Computer Architecture &amp; Organization</h1>
+            <p>A condensed revision note covering all 6 CCMAS topics — hardware &amp; instruction sets, dataflow, CPU design, assembly programming, memory hierarchy, and I/O organization — with comparison tables and exam-style Q&amp;A pulled straight from the course material.</p>
+            <div class="toc">
+              <a href="#t1">1. Hardware &amp; ISA</a>
+              <a href="#t2">2. Dataflow &amp; Control</a>
+              <a href="#t3">3. CPU Design</a>
+              <a href="#t4">4. Assembly Language</a>
+              <a href="#t5">5. Memory Hierarchy</a>
+              <a href="#t6">6. I/O Organization</a>
+            </div>
+          </div>
+        </div>
+
+        <section id="t1" class="panel notes-section">
+          <h2><span class="num">1</span>Principles of Computer Hardware &amp; Instruction Set Architecture</h2>
+          <h3>What is a CPU?</h3>
+          <p>The CPU (Central Processing Unit) executes instructions, performs arithmetic/logic, controls data flow, and communicates with memory and I/O devices. Its major functional units are:</p>
+          <ul>
+            <li><b>ALU (Arithmetic and Logic Unit)</b> — performs arithmetic (add, subtract, multiply, divide) and logic (AND, OR, NOT, comparisons).</li>
+            <li><b>Control Unit (CU)</b> — fetches instructions from memory, decodes them, and directs the other parts.</li>
+            <li><b>Registers</b> — small, very fast storage holding data/instructions/addresses temporarily. Key ones: MAR (Memory Address Register), MDR (Memory Data Register), ACC (Accumulator), IR (Instruction Register), PC (Program Counter).</li>
+            <li><b>Buses</b> — communication lines: <b>Data bus</b> (actual data), <b>Address bus</b> (memory addresses), <b>Control bus</b> (signals like read/write, clock, interrupt).</li>
+          </ul>
+
+          <h3>Computer Architecture vs Computer Organization</h3>
+          <p>Architecture is the blueprint (what the system does, from a programmer's view); Organization is the construction plan (how it's implemented in hardware).</p>
+          <div class="data-table-wrap"><table class="data-table">
+            <thead><tr><th>Aspect</th><th>Computer Architecture</th><th>Computer Organization</th></tr></thead>
+            <tbody>
+              <tr><td>Focus</td><td>What the system does (design &amp; behaviour)</td><td>How it's implemented (hardware-level detail)</td></tr>
+              <tr><td>Abstraction</td><td>Higher-level, user-visible</td><td>Lower-level, physical components</td></tr>
+              <tr><td>Visible to programmer?</td><td>Yes (e.g. ISA)</td><td>No (hidden internal implementation)</td></tr>
+              <tr><td>Example topics</td><td>ISA, data types, addressing modes</td><td>Control unit design, ALU design, pipelining</td></tr>
+              <tr><td>Target audience</td><td>Software engineers, compiler writers</td><td>Hardware engineers, digital designers</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>Von Neumann vs Harvard Architecture</h3>
+          <div class="data-table-wrap"><table class="data-table">
+            <thead><tr><th>Feature</th><th>Von Neumann</th><th>Harvard</th></tr></thead>
+            <tbody>
+              <tr><td>Memory</td><td>Shared for data and instructions</td><td>Separate memory for data and instructions</td></tr>
+              <tr><td>Instruction fetch</td><td>Instructions &amp; data fetched sequentially</td><td>Instructions &amp; data fetched simultaneously</td></tr>
+              <tr><td>Bus</td><td>Single bus for both</td><td>Separate buses</td></tr>
+              <tr><td>Performance</td><td>Prone to "Von Neumann bottleneck"</td><td>Higher throughput</td></tr>
+              <tr><td>Cost &amp; complexity</td><td>Cheaper, simpler</td><td>More complex, more expensive</td></tr>
+              <tr><td>Typical use</td><td>PCs, servers (modified Von Neumann)</td><td>Embedded systems, DSPs</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>Instruction Structure &amp; Formats</h3>
+          <p>An instruction has an <b>Opcode</b> (the operation, e.g. ADD, LOAD) and <b>Operands</b> (the data/addresses it works on). E.g. in <code>ADD X1, X2</code>, ADD is the opcode; X1 &amp; X2 are operands.</p>
+          <ul>
+            <li><b>Zero-address format</b> — operands implicit, taken from the stack top (stack-based CPUs).</li>
+            <li><b>One-address format</b> — one operand specified, the other implicit (uses an accumulator).</li>
+            <li><b>Two-address format</b> — two operands specified.</li>
+            <li><b>Three-address format</b> — three operands specified.</li>
+          </ul>
+
+          <h3>Instruction Types</h3>
+          <ul>
+            <li><b>Data Transfer</b> — LOAD, STORE, MOVE</li>
+            <li><b>Arithmetic</b> — ADD, SUB, MUL, DIV</li>
+            <li><b>Logical</b> — AND, OR, NOT, XOR</li>
+            <li><b>Control</b> — CALL, RETURN, JUMP</li>
+            <li><b>I/O</b> — IN, OUT</li>
+          </ul>
+
+          <h3>Addressing Modes</h3>
+          <div class="data-table-wrap"><table class="data-table">
+            <thead><tr><th>Mode</th><th>Description</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td>Immediate</td><td>Operand is part of the instruction</td><td><code>LOAD 5</code></td></tr>
+              <tr><td>Direct</td><td>Instruction contains the memory address</td><td><code>MOV AX,[1234H]</code></td></tr>
+              <tr><td>Indirect</td><td>Instruction gives an address that contains another address</td><td><code>LOAD (500)</code></td></tr>
+              <tr><td>Register</td><td>Operand is inside a register</td><td><code>LOAD X1</code></td></tr>
+              <tr><td>Register Indirect</td><td>Register holds the address of the operand</td><td><code>LOAD (X1)</code></td></tr>
+              <tr><td>Indexed</td><td>Effective address = base + index register</td><td><code>LOAD R1, X(R2)</code></td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>Machine Language vs High-Level Language</h3>
+          <div class="data-table-wrap"><table class="data-table">
+            <thead><tr><th>Feature</th><th>Machine Language</th><th>High-Level Language</th></tr></thead>
+            <tbody>
+              <tr><td>Nature</td><td>Binary (0s and 1s)</td><td>Human-readable (C, Java, Python)</td></tr>
+              <tr><td>Dependency</td><td>Machine-specific</td><td>Generally platform-independent</td></tr>
+              <tr><td>Speed</td><td>Fastest execution</td><td>Requires compiler/interpreter</td></tr>
+              <tr><td>Ease of use</td><td>Difficult to read/write</td><td>Easier to develop &amp; maintain</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>x86 vs MIPS (Example ISAs)</h3>
+          <div class="data-table-wrap"><table class="data-table">
+            <thead><tr><th>Feature</th><th>x86</th><th>MIPS</th></tr></thead>
+            <tbody>
+              <tr><td>Type</td><td>CISC (Complex Instruction Set)</td><td>RISC (Reduced Instruction Set)</td></tr>
+              <tr><td>Instruction length</td><td>Variable (1–15 bytes)</td><td>Fixed (32 bits)</td></tr>
+              <tr><td>Operand count</td><td>Often 2 (dest. is also a source)</td><td>Usually 3 (explicit)</td></tr>
+              <tr><td>Example</td><td><code>add eax, ebx</code></td><td><code>add $t0, $t1, $t2</code></td></tr>
+              <tr><td>Use case</td><td>Desktops, high-performance computing</td><td>Embedded systems, teaching</td></tr>
+            </tbody>
+          </table></div>
+
+          <div class="qa-callout"><p class="qa-q">Q: Explain the difference between Von Neumann and Harvard architecture.</p><p class="qa-a">A: Von Neumann uses a single memory and bus for instructions and data; Harvard uses separate memories and buses, allowing simultaneous access and better performance.</p></div>
+        </section>
+
+        <section id="t2" class="panel notes-section">
+          <h2><span class="num">2</span>Dataflow &amp; Control Instructions</h2>
+          <p><b>Dataflow</b> is the pathway through which data moves inside the CPU and between the CPU, memory, and I/O. The <b>Instruction Cycle</b> has 3 phases:</p>
+          <ol>
+            <li><b>Fetch</b> — CU gets the instruction from memory based on the Program Counter (PC).</li>
+            <li><b>Decode</b> — the instruction is interpreted to determine the operation and operands.</li>
+            <li><b>Execute</b> — the ALU or I/O system performs the operation; PC updates to the next instruction.</li>
+          </ol>
+          <p>This cycle repeats continuously until a HALT instruction or system shutdown.</p>
+
+          <h3>Control Instructions</h3>
+          <ul>
+            <li><b>Unconditional Jump (JMP)</b> — forces a jump, no matter what.</li>
+            <li><b>Conditional Jump (JZ, JNZ, JC, JNC)</b> — jumps only if a condition is met.</li>
+            <li><b>Call and Return</b> — CALL jumps to a function (saving the return address); RETURN goes back.</li>
+            <li><b>Halt</b> — stops execution completely until restarted.</li>
+          </ul>
+
+          <h3>Stack Operations</h3>
+          <p>A stack is a reserved memory area that works on the <b>LIFO</b> principle (Last In, First Out), managed via the Stack Pointer (SP).</p>
+          <ul>
+            <li><b>PUSH</b> — places data on top of the stack.</li>
+            <li><b>POP</b> — removes data from the stack into a register.</li>
+          </ul>
+
+          <h3>Interrupts and Their Handling</h3>
+          <p>An interrupt is a signal (hardware or software) demanding the CPU's immediate attention.</p>
+          <ul>
+            <li><b>Hardware interrupts</b> — from external devices (keyboard, mouse).</li>
+            <li><b>Software interrupts</b> — from running programs (e.g. divide-by-zero).</li>
+            <li><b>Maskable</b> interrupts can be ignored (e.g. printer ready); <b>Non-maskable</b> ones cannot (e.g. power failure).</li>
+          </ul>
+          <p><b>Interrupt handling steps:</b> (1) CPU completes the current atomic instruction → (2) saves current state on the stack → (3) jumps to the Interrupt Service Routine (ISR) → (4) executes the ISR → (5) restores saved state and resumes the program.</p>
+
+          <div class="qa-callout"><p class="qa-q">Q: What are the three main stages of the instruction cycle?</p><p class="qa-a">A: Fetch, Decode, and Execute.</p></div>
+        </section>
+
+        <section id="t3" class="panel notes-section">
+          <h2><span class="num">3</span>CPU Design</h2>
+          <p>CPU Design covers how the CPU is built internally, how data flows, and how control signals are generated.</p>
+          <h3>Data Path</h3>
+          <p>The Data Path is the collection of hardware inside the CPU that handles the movement of data between registers, ALU, memory, and I/O. Key components: <b>Registers</b>, <b>ALU</b>, <b>Buses</b>, and the <b>Memory Interface</b>.</p>
+
+          <h3>Register Transfer Level (RTL) Design</h3>
+          <p>RTL describes the flow of data between registers and the logic performed on it. Example for <code>ADD X1, X2, X3</code>:</p>
+          <pre>TEMP &lt;- X2 + X3   (ALU performs the addition)
+X1   &lt;- TEMP       (result stored in X1)</pre>
+
+          <h3>Hardwired vs Microprogrammed Control</h3>
+          <div class="data-table-wrap"><table class="data-table">
+            <thead><tr><th>Feature</th><th>Hardwired</th><th>Microprogrammed</th></tr></thead>
+            <tbody>
+              <tr><td>Speed</td><td>Very fast</td><td>Slower</td></tr>
+              <tr><td>Flexibility</td><td>Difficult to update</td><td>Easy to update</td></tr>
+              <tr><td>Implementation</td><td>Logic circuits (gates, flip-flops)</td><td>Control memory + microcode</td></tr>
+              <tr><td>Best for</td><td>Simple instruction sets (RISC)</td><td>Complex instructions (CISC)</td></tr>
+            </tbody>
+          </table></div>
+          <p><b>Hardwired advantages:</b> high speed, efficient for simple instruction sets. <b>Disadvantages:</b> inflexible (new instructions need redesign), complex for large instruction sets.</p>
+          <p><b>Microprogrammed advantages:</b> easy to design/update/debug, supports complex instructions. <b>Disadvantages:</b> slower, needs more memory.</p>
+
+          <h3>Case Study: Intel 8085</h3>
+          <p>The 8085 is an 8-bit processor with 6 general-purpose registers, using <b>hardwired control</b> logic. E.g. <code>MOV A, B</code> is implemented at RTL level as: Accumulator ← Register B. Modern processors like Intel x86 use <b>microprogrammed control</b> for more complex instruction decoding.</p>
+
+          <div class="qa-callout"><p class="qa-q">Q: Write an RTL expression for loading the sum of R1 and R2 into R3.</p><p class="qa-a">A: R3 ← R1 + R2</p></div>
+        </section>
+
+        <section id="t4" class="panel notes-section">
+          <h2><span class="num">4</span>Assembly Language Programming</h2>
+          <p>Assembly language is a low-level language using <b>mnemonics</b> to represent machine instructions — the human-readable form of machine code. It is hardware-dependent (each CPU has its own assembly language), and one assembly instruction generally maps to one machine instruction.</p>
+
+          <h3>Structure of an Assembly Program</h3>
+          <ul>
+            <li><b>Data section</b> — where variables are declared (<code>.DATA</code>).</li>
+            <li><b>Code section</b> — where instructions are written (<code>.CODE</code>).</li>
+            <li><b>Stack section</b> — optional, for PUSH/POP (<code>.STACK</code>).</li>
+            <li><b>END statement</b> — marks the end of the program.</li>
+          </ul>
+          <p>Other assembler directives: <code>.MODEL</code> (memory model). <b>Labels</b> mark a memory location or jump target (e.g. <code>START:</code>).</p>
+
+          <h3>Example Program (Add Two Numbers)</h3>
+          <pre>DATA SEGMENT
+  NUM1 DB 05H
+  NUM2 DB 03H
+  SUM  DB ?
+DATA ENDS
+
+CODE SEGMENT
+  MOV AL, NUM1   ; Load NUM1 into AL
+  ADD AL, NUM2   ; AL = AL + NUM2
+  MOV SUM, AL    ; Store result in SUM
+CODE ENDS
+END</pre>
+
+          <h3>Common Instructions</h3>
+          <div class="data-table-wrap"><table class="data-table">
+            <thead><tr><th>Type</th><th>Examples</th></tr></thead>
+            <tbody>
+              <tr><td>Data transfer</td><td><code>MOV R1,R2</code>, <code>LOAD R1,X</code>, <code>STORE R1,X</code></td></tr>
+              <tr><td>Arithmetic</td><td><code>ADD R1,R2</code>, <code>SUB R1,R2</code>, <code>INC R1</code>, <code>DEC R1</code></td></tr>
+              <tr><td>Logical</td><td><code>AND</code>, <code>OR</code>, <code>NOT</code>, <code>XOR</code></td></tr>
+              <tr><td>Control flow</td><td><code>JMP</code>, <code>JZ</code>, <code>JNZ</code>, <code>CALL</code>, <code>RET</code></td></tr>
+              <tr><td>Stack</td><td><code>PUSH R1</code>, <code>POP R1</code></td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>Loops &amp; Conditionals</h3>
+          <pre>MOV CX, 10        ; loop counter
+LOOP_START:
+  ADD AL, CL
+  LOOP LOOP_START ; decrements CX, jumps if CX != 0
+
+CMP AL, 3
+JGE GREATER       ; jump if AL &gt;= 3</pre>
+
+          <h3>MS-DOS Batch Files &amp; Low-Level File Handling</h3>
+          <p>A batch file (<code>.BAT</code>) is a text file of MS-DOS commands, e.g. <code>@ECHO OFF</code> (suppresses command echo). Low-level file handling uses <b>INT 21H</b> functions: <code>3Ch</code> create, <code>3Dh</code> open, <code>3Eh</code> close, <code>3Fh</code> read, <code>40h</code> write.</p>
+
+          <h3>Debugging Tools &amp; BIOS vs DOS Interrupts</h3>
+          <ul>
+            <li><b>DEBUG</b> — creates/tests <code>.COM</code> files interactively in DOS.</li>
+            <li><b>TASM/MASM</b> — assemble (<code>TASM file.asm</code>) → link (<code>TLINK file.obj</code>) → run (<code>file.exe</code>). MASM is stricter; TASM supports an "ideal mode" that simplifies syntax.</li>
+            <li><b>BIOS calls (INT 10H)</b> — hardware level, e.g. text/video display.</li>
+            <li><b>DOS calls (INT 21H)</b> — operating-system level services, e.g. file operations, screen output.</li>
+          </ul>
+
+          <div class="qa-callout"><p class="qa-q">Q: What is the purpose of a directive in Assembly Language?</p><p class="qa-a">A: A directive gives instructions to the assembler, not the CPU — e.g. <code>.DATA</code> begins the data segment.</p></div>
+        </section>
+
+        <section id="t5" class="panel notes-section">
+          <h2><span class="num">5</span>Memory Hierarchy</h2>
+          <p>Memory hierarchy organizes memory types by <b>speed, cost per bit, and capacity</b> — fastest/smallest/priciest at the top, slowest/largest/cheapest at the bottom.</p>
+          <div class="data-table-wrap"><table class="data-table">
+            <thead><tr><th>Level</th><th>Speed / Cost</th><th>Example</th></tr></thead>
+            <tbody>
+              <tr><td>Registers</td><td>Fastest, smallest, most expensive</td><td>ACC, PC, IR</td></tr>
+              <tr><td>Cache (L1/L2/L3)</td><td>Fast, small, expensive</td><td>L1: 32–128KB; L2: 256KB–8MB; L3: shared, larger</td></tr>
+              <tr><td>Main memory</td><td>Medium speed &amp; cost, volatile</td><td>RAM</td></tr>
+              <tr><td>Secondary storage</td><td>Slower, cheaper, larger</td><td>Hard disk, SSD</td></tr>
+              <tr><td>Tertiary storage</td><td>Slowest, cheapest, largest</td><td>Magnetic tapes, optical disks</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>Performance Metrics</h3>
+          <p><b>AMAT (Average Memory Access Time)</b> = Hit Time + (Miss Rate × Miss Penalty).</p>
+          <p><b>Virtual Memory</b> gives programs the illusion of a large contiguous memory space while the OS maps virtual addresses to physical memory. Benefits: convenient memory management, multitasking support, apparent extra memory via disk swapping.</p>
+          <p><b>TLB (Translation Lookaside Buffer)</b> — a small, fast cache for recent virtual-to-physical address translations.</p>
+
+          <h3>Performance Optimizations</h3>
+          <ul>
+            <li><b>Reduce miss rate</b> — use larger caches.</li>
+            <li><b>Reduce miss penalty</b> — use hierarchical caches.</li>
+            <li><b>Reduce hit time</b> — keep L1 cache small and simple.</li>
+            <li><b>Virtual memory</b> — ensure the working set fits memory; maintain a high TLB hit rate.</li>
+          </ul>
+          <p><b>Compiler support for cache efficiency:</b> loop tiling/blocking, loop fusion/fission, data structure transformations, register tiling, software prefetching, cache-aware tiling, stream buffers, instruction scheduling.</p>
+        </section>
+
+        <section id="t6" class="panel notes-section">
+          <h2><span class="num">6</span>I/O Organization</h2>
+          <p>I/O Organization is the design enabling the CPU to communicate and transfer data with external devices (keyboards, disks, etc.).</p>
+          <h3>Components</h3>
+          <ul>
+            <li><b>I/O Module/Controller</b> — bridges the CPU and peripherals; handles control/timing signals, processor communication, device communication &amp; error detection.</li>
+            <li><b>System Bus</b> — shared pathway used by CPU, memory, and I/O modules.</li>
+            <li><b>Control &amp; Data Registers</b> — indicate device readiness/errors, send commands, transfer data.</li>
+          </ul>
+
+          <h3>Methods of I/O Data Transfer</h3>
+          <div class="data-table-wrap"><table class="data-table">
+            <thead><tr><th>Method</th><th>How it works</th></tr></thead>
+            <tbody>
+              <tr><td>Programmed I/O (Polling)</td><td>CPU continuously checks the device's status register until ready</td></tr>
+              <tr><td>Interrupt-driven I/O</td><td>Device sends an interrupt when ready; CPU pauses, services, resumes</td></tr>
+              <tr><td>Direct Memory Access (DMA)</td><td>DMA controller transfers data directly between device and memory, minimal CPU involvement</td></tr>
+            </tbody>
+          </table></div>
+
+          <h3>Addressing Methods</h3>
+          <ul>
+            <li><b>Memory-Mapped I/O (MMIO)</b> — devices treated like memory locations; standard load instructions apply.</li>
+            <li><b>Port-Mapped I/O (PMIO)</b> — devices get a separate address space, accessed with special instructions (e.g. <code>IN</code>, <code>OUT</code> on x86).</li>
+          </ul>
+
+          <h3>Key Terms</h3>
+          <p><b>Latency</b> — time to complete an I/O operation (lower is better). <b>Bandwidth (throughput)</b> — rate of data transfer (higher is better).</p>
+
+          <div class="qa-callout"><p class="qa-q">Q: What does the CALL FUNC instruction do?</p><p class="qa-a">A: It saves the return address on the stack and jumps to the subroutine FUNC.</p></div>
+        </section>
+
+        <div class="panel notes-cta">
+          <div><h3 style="margin:0">Ready to test yourself?</h3><p>Take the IFT 212 practice CBT covering all 217 questions across these 6 topics.</p></div>
+          <a class="primary-btn" href="ift212_exam.html">Start Practice CBT →</a>
+        </div>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-brand">
+          <div class="brand-mark">S</div>
+          <div>
+            <strong>SamistInTech</strong>
+            <p>A student practice CBT portal built for study, revision and self-assessment ahead of the real exam.</p>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Courses</h4>
+          <a href="ils212.html">ILS 212 — Information Literacy Skills</a>
+          <a href="gst212.html">GST 212 — Philosophy</a>
+          <a href="get204.html">GET 204 — Engineering Workshop Practice</a>
+          <a href="ift212.html">IFT 212 — Computer Architecture</a>
+        </div>
+        <div class="footer-col">
+          <h4>About</h4>
+          <span>Built by SamistInTech</span>
+          <span>Nigeria • Tech Enthusiast</span>
+          <span>Not an official examination</span>
+        </div>
+        <div class="footer-bottom">© 2026 SamistInTech. Practice CBT — built for student learning &amp; practice.</div>
+      </div>
+    </footer>
+  </div>
+  <script>
+    document.getElementById('themeBtn').addEventListener('click',()=>document.body.classList.toggle('dark'));
+  </script>
+</body>
+</html>
